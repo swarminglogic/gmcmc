@@ -1,0 +1,45 @@
+import os
+
+Import('env')
+
+target = env['base_exec_dir'] + '/wordgen' + env['PROGSUFFIX']
+env.Alias('wordgen', target)
+
+if GetOption('win64'):
+    otherlibs = ['winmm', 'imm32', 'ole32', 'oleaut32', 'gdi32', 'version']
+else:
+    otherlibs = []
+
+pathBoost  = os.environ['BOOST_DIR'];
+
+cppflags = ['-fno-strict-aliasing',
+            '-funsafe-loop-optimizations',
+            '-std=c++11']
+gccWarningFlags=env['gccWarningFlags']
+gccWarningFlags.remove('-Wstack-protector');
+cppflags.extend(env['gccWarningFlags'])
+cppflags.extend(['-isystem', pathBoost + '/include'])
+
+
+sourcepaths = [
+    '#/src',
+    pathBoost + '/include'
+]
+
+libpaths = [env['base_lib_dir']]
+
+libs = []
+libs.extend(otherlibs)
+
+
+cppMain = [Glob('wordgen.cpp') +
+           Glob('markov/*.cpp') +
+           Glob('util/Random.cpp')]
+
+
+wordgen = env.Program(target, cppMain,
+                      LIBS = libs,
+                      LIBPATH  = libpaths,
+                      CPPFLAGS = cppflags,
+                      CPPPATH  = sourcepaths);
+Default(wordgen)
