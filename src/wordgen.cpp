@@ -67,8 +67,9 @@ int main(int argc, char **argv)
     std::cerr << "Bad argument?" << std::endl;
   }
 
-  // Create WordGenerator from factory
   Random::init();
+
+  // Create WordGenerator from factory
   auto wg = WordGeneratorFactory::create(N, N_init);
   if (!wg) {
     std::cerr << "Failed to create WordGenerator object." << std::endl;

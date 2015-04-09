@@ -8,10 +8,9 @@ This is designed to be completely agnostic to the data type it represents and
 generates, and to be very easily extended to handle any custom type.
 
 The concept is as following:
-```
-  1. I have set of data element sequences (e.g. set of letter-sequences (aka. words))
-  2. Generate more sequences that are similar (e.g. new words)
-```
+
+  1. I have set of data element sequences (e.g. set of letter-sequences (i.e. words))
+  2. Generate more sequences that are similar (i.e. new words)
 
 Keywords **`elements`** and **`sequences`** can be anything, as long as the following is true:
 
@@ -27,19 +26,19 @@ transitions, where elements are of type `T`.
 
 **Random sentence generator**
 
-    `(sequences, elements) = (sentences, words).`
+    (sequences, elements) = (sentences, words).
 
 **Random word generator**
 
-    `(sequences, elements) = (words, letters)`
+    (sequences, elements) = (words, letters)
 
 However, by parsing syllables, it could also be:
 
-    `(sequences, elements) = (words, syllables)`
+    (sequences, elements) = (words, syllables)
 
 **Random arpeggio generator**
 
-    `(sequences, elements) = (arpeggios, music-notes)`
+    (sequences, elements) = (arpeggios, music-notes)
 
 
 ### Features
@@ -83,4 +82,7 @@ See other options with `scons --help`.
 
 Alternatively:
 
-`g++ -o wordgen -std=c++11 -Wall src/wordgen.cpp src/markov/*.cpp src/util/*.cpp -Isrc/ -isystem [BOOST_HEADER_PATH]`
+```
+g++ -o wordgen -std=c++11 -Wall src/wordgen.cpp src/markov/*.cpp \
+    src/util/*.cpp -Isrc/ -isystem [BOOST_HEADER_PATH]
+```

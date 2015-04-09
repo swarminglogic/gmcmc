@@ -12,7 +12,7 @@
  * Random class, for generating random values.
  * Currently not thread safe.
  *
- * @author SwarmingLogic (Roald Fernandez) (Roald Fernandez)
+ * @author SwarmingLogic (Roald Fernandez)
  */
 class Random
 {
