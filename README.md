@@ -9,10 +9,10 @@ generates, and to be very easily extended to handle any custom type.
 
 The concept is as following:
 
-  1. I have set of data element sequences (e.g. set of letter-sequences (i.e. words))
+  1. I have set of data element sequences (e.g. set of words)
   2. Generate more sequences that are similar (i.e. new words)
 
-Keywords **`elements`** and **`sequences`** can be anything, as long as the following is true:
+Keywords **`elements`** and **`sequences`** can represent anything, as long as the following is true:
 
 1. A sequence can be broken up into elements.
 1. Elements can be put together to form a sequence.
@@ -26,7 +26,7 @@ transitions, where elements are of type `T`.
 
 **Random sentence generator**
 
-    (sequences, elements) = (sentences, words).
+    (sequences, elements) = (sentences, words)
 
 **Random word generator**
 
@@ -47,9 +47,12 @@ However, by parsing syllables, it could also be:
 each markov chain node. In other words 'N previous elements should matter when
 determining the next transition'.
 
-`N_init`-order: Since many sequences have special starting properties, it us
-possible specify that, when generating new random data, the first `N_init`
-elements should match that of an input data sequence. As such, `N_init <= N`.
+`N_init`-order: Since many sequences have special starting properties, it is
+possible when generating new random data, that the first `N_init`
+elements should match that of an input data sequence.
+
+It is required that `1 <= N_init <= N`, although a `TODO` is to have the lower
+bound be `0`, at which point the `N_init` feature becomes a `NOP`.
 
 
 ### Complexity
